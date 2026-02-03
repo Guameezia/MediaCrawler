@@ -39,8 +39,14 @@ WEIBO_CREATOR_ID_LIST = [
 # 如果开启的话会增加被风控的概率，相当于一个关键词搜索请求会再遍历所有帖子的时候，再请求一次帖子详情
 ENABLE_WEIBO_FULL_TEXT = False
 
-WEIBO_CRAWL_START_TIME = "2026-01-01 00:00:00"  # 爬取起始时间：2026年1月1日
-WEIBO_CRAWL_END_TIME = "2026-01-31 23:59:59"    # 爬取结束时间：2026年1月31日
+# ---------- 微博归档：抓取时间范围（只归档该时间段内的微博）----------
+# 格式：YYYY-MM-DD HH:MM:SS，改这里即可更换要归档的目标时间段
+WEIBO_CRAWL_START_TIME = "2026-01-01 00:00:00"  # 起始时间
+WEIBO_CRAWL_END_TIME = "2026-01-31 23:59:59"    # 结束时间
+
+# ---------- 微博归档：输出目录名（桌面下的文件夹名，改这里即可换输出目录）----------
+# 例如 "weibo_sxu_202601" → 输出到 ~/Desktop/weibo_sxu_202601/output_xml_* 与 output_pdf_*
+WEIBO_ARCHIVE_OUTPUT_DIR_NAME = "weibo_sxu_202601"
 
 # 微博归档 PDF：True=用 Chrome 打开详情页（副题名 URL）并打印为 PDF；False=仅生成 XML + HTML
 WEIBO_PDF_VIA_BROWSER = True

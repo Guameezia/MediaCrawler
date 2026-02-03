@@ -20,23 +20,27 @@ PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-# 输出目录：桌面下的 weibo_sxu_{日期} 文件夹
+# 输出目录：桌面下的子文件夹名由 config.WEIBO_ARCHIVE_OUTPUT_DIR_NAME 决定
 DESKTOP_DIR = os.path.join(os.path.expanduser("~"), "Desktop")
+
+import config
 
 
 def _weibo_output_base_dir() -> str:
-    return os.path.join(DESKTOP_DIR, "weibo_sxu_202601")
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    return os.path.join(DESKTOP_DIR, name)
 
 
 def get_default_xml_output_dir() -> str:
-    return os.path.join(_weibo_output_base_dir(), "output_xml_sxu_202601")
+    base = _weibo_output_base_dir()
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    return os.path.join(base, f"output_xml_{name}")
 
 
 def get_default_pdf_output_dir() -> str:
-    return os.path.join(_weibo_output_base_dir(), "output_pdf_sxu_202601")
-
-
-import config
+    base = _weibo_output_base_dir()
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    return os.path.join(base, f"output_pdf_{name}")
 from media_platform.weibo import WeiboCrawler
 from tools import utils
 
