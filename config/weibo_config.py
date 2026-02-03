@@ -25,16 +25,22 @@ WEIBO_SEARCH_TYPE = "default"
 
 # 指定微博ID列表
 WEIBO_SPECIFIED_ID_LIST = [
-    "4982041758140155",
+    "",
     # ........................
 ]
 
 # 指定微博用户ID列表
 WEIBO_CREATOR_ID_LIST = [
-    "5756404150",
+    "7491505566",
     # ........................
 ]
 
 # 是否开启微博爬取全文的功能，默认开启
 # 如果开启的话会增加被风控的概率，相当于一个关键词搜索请求会再遍历所有帖子的时候，再请求一次帖子详情
-ENABLE_WEIBO_FULL_TEXT = True
+ENABLE_WEIBO_FULL_TEXT = False
+
+WEIBO_CRAWL_START_TIME = "2026-01-01 00:00:00"  # 爬取起始时间：2026年1月1日
+WEIBO_CRAWL_END_TIME = "2026-01-31 23:59:59"    # 爬取结束时间：2026年1月31日
+
+# 微博归档 PDF：True=用 Chrome 打开详情页（副题名 URL）并打印为 PDF；False=仅生成 XML + HTML
+WEIBO_PDF_VIA_BROWSER = True
