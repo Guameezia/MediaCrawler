@@ -27,19 +27,19 @@ import config
 
 
 def _weibo_output_base_dir() -> str:
-    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_archive")
     return os.path.join(DESKTOP_DIR, name)
 
 
 def get_default_xml_output_dir() -> str:
     base = _weibo_output_base_dir()
-    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_archive")
     return os.path.join(base, f"output_xml_{name}")
 
 
 def get_default_pdf_output_dir() -> str:
     base = _weibo_output_base_dir()
-    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_sxu_202601")
+    name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_archive")
     return os.path.join(base, f"output_pdf_{name}")
 from media_platform.weibo import WeiboCrawler
 from tools import utils
