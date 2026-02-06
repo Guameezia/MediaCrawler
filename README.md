@@ -1,3 +1,96 @@
+## Weibo Archive Tool
+
+> **⚠️ 注意：** 以下功能为基于原仓库的扩展功能，不属于原 MediaCrawler 项目。
+
+### 功能简介
+
+新增了微博 XML/PDF 归档工具 (`tools/weibo_xml_pdf_archiver.py`)，可以将爬取的微博数据转换为归档格式：
+
+1. **XML 归档文件**：按照归档标准格式生成 XML 文件，包含正题名、副题名、时间、单位、归档部门、责任者等信息
+2. **PDF 文档**：通过Chrome浏览器打开微博详情页并保存为 PDF
+
+### 使用步骤
+
+#### 1. 配置微博爬虫参数
+
+在 `config/weibo_config.py` 中配置以下参数：
+
+```python
+# 指定要归档的微博用户ID列表
+WEIBO_CREATOR_ID_LIST = [
+    "7491505566",  # 例如：山西大学的微博ID
+    # 可以添加多个用户ID
+]
+
+# 设置归档时间范围（格式：YYYY-MM-DD HH:MM:SS）
+WEIBO_CRAWL_START_TIME = "2025-12-01 00:00:00"  # 起始时间
+WEIBO_CRAWL_END_TIME = "2025-12-31 23:59:59"    # 结束时间
+
+# 设置输出目录名（文件将保存在项目根目录下的该文件夹中）
+WEIBO_ARCHIVE_OUTPUT_DIR_NAME = "weibo_sxu_202512"
+
+# 是否使用浏览器生成 PDF（True=生成PDF，False=仅生成XML）
+WEIBO_PDF_VIA_BROWSER = True
+```
+
+#### 2. 登录并运行微博爬虫
+
+首先需要登录并爬取微博数据：
+
+```shell
+# 爬取指定创作者的微博内容
+uv run main.py --platform wb --lt qrcode --type creator
+```
+
+**注意：** 运行上述命令后，程序会自动打开浏览器，请完成登录。
+
+#### 3. 运行归档工具
+
+```shell
+# 生成 XML 和 PDF 归档文件
+uv run tools/weibo_xml_pdf_archiver.py
+
+# 或者仅从已有 XML 文件重新生成 PDF
+uv run tools/weibo_xml_pdf_archiver.py --pdf-from-xml
+```
+
+### 输出说明
+
+归档文件将保存在项目根目录下的指定文件夹中：
+
+```
+└── weibo_sxu_202512/          # 由 WEIBO_ARCHIVE_OUTPUT_DIR_NAME 配置
+    ├── output_xml_weibo_sxu_202512/  # XML 文件目录
+    │   ├── 微博标题1.xml
+    │   ├── 微博标题2.xml
+    │   └── ...
+    └── output_pdf_weibo_sxu_202512/  # PDF 文件目录（如果启用）
+        ├── 微博标题1.pdf
+        ├── 微博标题2.pdf
+        └── ...
+```
+
+### 注意事项
+
+- 确保已安装前置依赖，e.g.,
+ `playwright`（如果启用 PDF 生成功能）：`uv run playwright install`
+- 归档工具会读取 `data/weibo/json/creator_contents_*.json` 中的数据
+- 如果本地没有数据，工具会自动尝试运行一次微博爬虫
+
+---
+
+<div align="center">
+
+**═══════════════════════════════════════════════════════════════**
+
+## 以下为原 MediaCrawler 项目内容
+
+**═══════════════════════════════════════════════════════════════**
+
+</div>
+
+---
+
 # 🔥 MediaCrawler - 自媒体平台爬虫 🕷️
 
 <div align="center" markdown="1">
@@ -30,7 +123,7 @@
 [![Español](https://img.shields.io/badge/🇪🇸_Español-Available-green)](README_es.md)
 </div>
 
-
+---
 
 > **免责声明：**
 > 

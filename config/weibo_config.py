@@ -44,8 +44,8 @@ ENABLE_WEIBO_FULL_TEXT = False
 WEIBO_CRAWL_START_TIME = "2025-12-01 00:00:00"  # 起始时间
 WEIBO_CRAWL_END_TIME = "2025-12-31 23:59:59"    # 结束时间
 
-# ---------- 微博归档：输出目录名（桌面下的文件夹名，改这里即可换输出目录）----------
-# 例如 "weibo_sxu_202601" → 输出到 ~/Desktop/weibo_sxu_202601/output_xml_* 与 output_pdf_*
+# ---------- 微博归档：输出目录名（项目根目录下的文件夹名，改这里即可换输出目录）----------
+# 例如 "weibo_sxu_202601" → 输出到项目根目录/weibo_sxu_202601/output_xml_* 与 output_pdf_*
 WEIBO_ARCHIVE_OUTPUT_DIR_NAME = "weibo_sxu_202512"
 
 # 微博归档 PDF：True=用 Chrome 打开详情页（副题名 URL）并打印为 PDF；False=仅生成 XML + HTML

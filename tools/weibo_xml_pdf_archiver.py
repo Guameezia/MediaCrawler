@@ -20,15 +20,13 @@ PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-# 输出目录：桌面下的子文件夹名由 config.WEIBO_ARCHIVE_OUTPUT_DIR_NAME 决定
-DESKTOP_DIR = os.path.join(os.path.expanduser("~"), "Desktop")
-
+# 输出目录：项目根目录下的子文件夹名由 config.WEIBO_ARCHIVE_OUTPUT_DIR_NAME 决定
 import config
 
 
 def _weibo_output_base_dir() -> str:
     name = getattr(config, "WEIBO_ARCHIVE_OUTPUT_DIR_NAME", "weibo_archive")
-    return os.path.join(DESKTOP_DIR, name)
+    return os.path.join(PROJECT_ROOT, name)
 
 
 def get_default_xml_output_dir() -> str:
